@@ -1,35 +1,46 @@
 package org.example.schoolMgt.entities;
 
+import org.example.schoolMgt.enums.StudentType;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Student extends User{
-    private String club;
-    boolean isBreakingTheLaw;
+    private StudentType studentType;
+    private boolean isBreakingTheLaw;
 
-    public static List<Student> studentList = new ArrayList<>();
+    public static List<Student> artStudentList = new ArrayList<>();
+    public static List<Student> scienceStudentList = new ArrayList<>();
 
+    public Student(StudentType studentType, boolean isBreakingTheLaw) {
+        this.studentType = studentType;
+        this.isBreakingTheLaw = isBreakingTheLaw;
+    }
+
+
+    public Student() {
+    }
 
     public boolean isBreaking() {
-        boolean brakeLaw = false;
+//        boolean brakeLaw = false;
         if (isBreakingTheLaw) {
 
             System.out.println("The student " + getName() + " is expelled for breaking the law");
-            brakeLaw = true;
-            return brakeLaw;
+//            brakeLaw = true;
+            return isBreakingTheLaw;
         } else {
-            brakeLaw = false;
-            return brakeLaw;
+            isBreakingTheLaw = false;
+            return isBreakingTheLaw;
         }
 
     }
 
-    public String getClub() {
-        return club;
+    public StudentType getStudentType() {
+        return studentType;
     }
 
-    public void setClub(String club) {
-        this.club = club;
+    public void setStudentType(StudentType studentType) {
+        this.studentType = studentType;
     }
 
     public boolean isBreakingTheLaw() {
@@ -40,4 +51,6 @@ public class Student extends User{
         isBreakingTheLaw = breakingTheLaw;
 
     }
+
+
 }

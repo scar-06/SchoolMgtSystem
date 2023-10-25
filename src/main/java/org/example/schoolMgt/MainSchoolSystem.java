@@ -1,9 +1,13 @@
 package org.example.schoolMgt;
 
 import org.example.schoolMgt.entities.*;
+import org.example.schoolMgt.enums.Gender;
+import org.example.schoolMgt.enums.Role;
+import org.example.schoolMgt.services.servicesImplementation.NonAcademicStaffImpl;
 import org.example.schoolMgt.services.servicesImplementation.PrincipalImplementation;
 import org.example.schoolMgt.services.servicesImplementation.TeacherImplementation;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 
 public class MainSchoolSystem {
@@ -16,12 +20,15 @@ public class MainSchoolSystem {
         Teacher teacher = new Teacher();
         Course course = new Course();
         Course course1 = new Course();
+        NonAcademicStaff nonAcad = new NonAcademicStaff();
 
 
 //        Inputting Fields and Methods of entities
         //    principal
         principal.setName("Principal Deca");
         principal.setSpecialization("Admission and Expulsion");
+        principal.setGender(Gender.MALE);
+        principal.setSalary(BigDecimal.valueOf(550000));
 
         // applicant
         applicant.setName("Olumide Olatunde");
@@ -30,24 +37,25 @@ public class MainSchoolSystem {
 
         // student
         student.setName("Ayodeji Mobolaji");
-        student.setBreakingTheLaw(true);
+        student.setBreakingTheLaw(false);
 
         // teacher
         teacher.setName("Mr. Michael");
 
-
         // course
         course.setCourseName("Integrated Science");
         course.setTimePeriod("10am - 11:30am");
-        course1.setCourseName("Physics");
+        course1.setCourseName("Creative Arts");
         course1.setTimePeriod("1:30pm - 2:30pm");
+        Course.scienceCourseList.add(course);
+        Course.artCourseList.add(course1);
+        System.out.println("The Science Course LIst has the following " + Course.scienceCourseList);
+        System.out.println("The Science Course LIst has the following " + Course.artCourseList);
 
-        Course.courseList.add(course); // would occur twice for teachCourse TeacherImplementation printed here on Main (cos same statement is there as well)
-        Course.courseList.add(course1);
-        System.out.println("The Course LIst has the following " + Course.courseList);
-
-
-
+        // non-academic staff
+        nonAcad.setName("Funke Yemi");
+        nonAcad.setRole(Role.JANITOR);
+        nonAcad.setSchedule("4PM - 6PM");
 
 
 
@@ -67,11 +75,20 @@ public class MainSchoolSystem {
         String wouldApplicantBeAdmitted = principalAdmits.admitApplicant(applicant,principal);
         System.out.println(wouldApplicantBeAdmitted);
 
+
 //        Utilising the teacher's routines
 //              Teacher teaches courses (INTERFACE IMPLEMENTATION)
         TeacherImplementation teacherTeaches = new TeacherImplementation();
         String teacherCourseList = teacherTeaches.teachCourses(teacher, course);
         System.out.println(teacherCourseList);
+
+//        Utilising the non-academic staff's routines
+//              Janitor's schedule to clean classes (INTERFACE IMPLEMENTATION)
+        NonAcademicStaffImpl nonAcademicStaff = new NonAcademicStaffImpl();
+        nonAcademicStaff.cleanClasses(nonAcad);
+
+
+
 
 
     }

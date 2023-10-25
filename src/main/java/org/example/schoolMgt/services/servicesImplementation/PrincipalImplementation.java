@@ -28,6 +28,7 @@ public class PrincipalImplementation implements PrincipalServices {
 
 
         if (applicant.getAge() >= minAge && applicant.getAge() <= maxAge) {
+            Applicant.applicantList.add(applicant);
             return canAdmit;
         } else {
             return canNotAdmit;

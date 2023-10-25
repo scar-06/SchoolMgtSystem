@@ -1,6 +1,7 @@
 package org.example.schoolMgt.entities;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class Principal extends User{
     private String specialization;
@@ -39,6 +40,29 @@ public class Principal extends User{
 
     public void setSalary(BigDecimal salary) {
         this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+        return "Principal{" +
+                "specialization='" + specialization + '\'' +
+                ", schedule='" + schedule + '\'' +
+                ", salary=" + salary +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Principal principal = (Principal) o;
+        return Objects.equals(specialization, principal.specialization) && Objects.equals(schedule, principal.schedule) && Objects.equals(salary, principal.salary);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), specialization, schedule, salary);
     }
 
 }
