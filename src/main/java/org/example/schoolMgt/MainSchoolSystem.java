@@ -83,7 +83,6 @@ public class MainSchoolSystem {
         System.out.println(teacherCourseList);
 
 //        Utilising the non-academic staff's routines
-//              Janitor's schedule to clean classes (INTERFACE IMPLEMENTATION)
         NonAcademicStaffImpl nonAcademicStaff = new NonAcademicStaffImpl();
         nonAcademicStaff.cleanClasses(nonAcad);
 
